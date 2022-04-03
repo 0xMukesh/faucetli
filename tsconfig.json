@@ -2,13 +2,13 @@
   "compilerOptions": {
     "declaration": true,
     "importHelpers": true,
+    "moduleResolution": "node",
     "module": "commonjs",
     "outDir": "dist",
-    "rootDir": "src",
+    "rootDir": ".",
     "strict": true,
-    "target": "es2019"
-  },
-  "include": [
-    "src/**/*"
-  ]
+    "target": "es2019",
+    "esModuleInterop": true,
+    "resolveJsonModule": true
+  }
 }

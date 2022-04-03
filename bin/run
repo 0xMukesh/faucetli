@@ -1,5 +1,12 @@
 #!/usr/bin/env node
 
-const oclif = require('@oclif/core')
+if (process.argv.slice(2).length == 0) {
+  const figchalk = require("figchalk");
 
-oclif.run().then(require('@oclif/core/flush')).catch(require('@oclif/core/handle'))
+  console.log(figchalk.mix("🌈 F a u c e t l i", "redBright"));
+}
+
+require("@oclif/command")
+  .run()
+  .then(require("@oclif/command/flush"))
+  .catch(require("@oclif/errors/handle"));
