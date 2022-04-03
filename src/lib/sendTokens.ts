@@ -20,8 +20,7 @@ const sendTokens = (wallet: string, network: string) => {
                 `${constants["ratelimitDurationLocale"]} to get more tokens`
               )}`
             )
-          ); // hi ser
-          // terminal dekh bsdk
+          );
         } else {
           await axios
             .get(`${api}/token?address=${wallet}&network=${network}`)
