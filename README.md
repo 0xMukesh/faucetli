@@ -1,11 +1,8 @@
 # 🦄 faucetli
 
-A command line tool to get tokens on testnets quickly!
+![](https://imgur.com/9WQdXPl.png)
 
-[![oclif](https://img.shields.io/badge/cli-oclif-brightgreen.svg)](https://oclif.io)
-[![Version](https://img.shields.io/npm/v/faucetli.svg)](https://npmjs.org/package/faucetli)
-[![Downloads/week](https://img.shields.io/npm/dw/faucetli.svg)](https://npmjs.org/package/faucetli)
-[![License](https://img.shields.io/npm/l/faucetli.svg)](https://github.com/kira272921/faucetli/blob/main/package.json)
+🦄 A command line tool to get tokens on testnets quickly!
 
 - [Usage](#usage)
 - [Commands](#commands)
