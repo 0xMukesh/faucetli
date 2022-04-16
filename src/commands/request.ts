@@ -12,12 +12,12 @@ export default class Request extends Command {
   static description = "🦄 Get testnet tokens by using request command";
 
   async run() {
-    inquirer.prompt(questions).then((answers) => {
+    inquirer.prompt(questions).then(async (answers) => {
       if (answers.wallet !== undefined) {
         createConfigFile(answers.wallet);
-        sendTokens(getAddressFromConfigFile(), answers.network);
+        await sendTokens(getAddressFromConfigFile(), answers.network);
       } else {
-        sendTokens(getAddressFromConfigFile(), answers.network);
+        await sendTokens(getAddressFromConfigFile(), answers.network);
       }
     });
   }
