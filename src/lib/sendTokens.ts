@@ -4,7 +4,6 @@ import chalk from "chalk";
 
 import ratelimit from "../utils/ratelimit";
 
-import { api } from "../../package.json";
 import constants from "../data/constants";
 import ora from "ora";
 
@@ -22,7 +21,7 @@ const sendTokens = async (wallet: string, network: string) => {
     );
   } else {
     await axios
-      .get(`${api}/token?address=${wallet}&network=${network}`)
+      .get(`${constants.apiUrl}/token?address=${wallet}&network=${network}`)
       .then((res) => {
         if (res.data.insufficientFunds === true) {
           spinner.fail(

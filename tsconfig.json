@@ -5,7 +5,7 @@
     "moduleResolution": "node",
     "module": "commonjs",
     "outDir": "dist",
-    "rootDir": ".",
+    "rootDir": "src",
     "strict": true,
     "target": "es2019",
     "esModuleInterop": true,
