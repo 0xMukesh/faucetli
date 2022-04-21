@@ -6,6 +6,7 @@ const constants = {
   ratelimitFilePath: `${os.homedir()}/.config/faucetli/ratelimit.json`,
   ratelimitDuration: 3600000 * 3,
   ratelimitDurationLocale: "3 hours",
+  apiUrl: "https://faucetli-backend-production.up.railway.app/api/v1",
 };
 
 export default constants;

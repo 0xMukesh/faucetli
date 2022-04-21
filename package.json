@@ -1,9 +1,8 @@
 {
   "name": "faucetli",
-  "version": "1.0.5",
+  "version": "1.0.6",
   "description": "🦄 A command line tool to get tokens on testnets quickly!",
   "author": "Kira272921",
-  "api": "https://faucetli-backend-production.up.railway.app/api/v1",
   "bin": {
     "faucetli": "./bin/run"
   },
@@ -53,7 +52,7 @@
   "oclif": {
     "bin": "faucetli",
     "dirname": "faucetli",
-    "commands": "./dist/src/commands",
+    "commands": "./dist/commands",
     "plugins": [
       "@oclif/plugin-help",
       "@oclif/plugin-plugins"
