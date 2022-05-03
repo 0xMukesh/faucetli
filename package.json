@@ -1,6 +1,6 @@
 {
   "name": "faucetli",
-  "version": "1.0.6",
+  "version": "1.0.7",
   "description": "🦄 A command line tool to get tokens on testnets quickly!",
   "author": "Kira272921",
   "bin": {

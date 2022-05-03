@@ -1,11 +1,10 @@
-import listr from "listr";
 import axios from "axios";
 import chalk from "chalk";
+import ora from "ora";
 
 import ratelimit from "../utils/ratelimit";
 
 import constants from "../data/constants";
-import ora from "ora";
 
 const sendTokens = async (wallet: string, network: string) => {
   const spinner = ora(`🦄 sending tokens to ${wallet} on ${network}`).start();
@@ -32,6 +31,12 @@ const sendTokens = async (wallet: string, network: string) => {
         } else {
           if (res.data.invalidAddress === true) {
             spinner.fail(chalk.redBright(`🤷‍♂️ The address provided is invalid`));
+          } else if (res.data.exceedsMaxLimit === true) {
+            spinner.fail(
+              chalk.redBright(
+                `🤷‍♂️ You already have enough tokens to pay the gas fees`
+              )
+            );
           } else {
             spinner.succeed(
               chalk.greenBright(
