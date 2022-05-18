@@ -23,7 +23,7 @@
     "@oclif/plugin-help": "^5",
     "@oclif/plugin-plugins": "^2.0.1",
     "axios": "^0.27.2",
-    "chalk": "4.1.2",
+    "chalk": "5.0.1",
     "figchalk": "^1.0.3",
     "inquirer": "^8.2.4",
     "ora": "5.4.1",
