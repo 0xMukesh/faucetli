@@ -6,7 +6,11 @@ import ratelimit from "../utils/ratelimit";
 
 import constants from "../data/constants";
 
-const sendTokens = async (wallet: string, network: string) => {
+const sendTokens = async (
+  wallet: string,
+  network: string,
+  blockchain: string = "ethereum"
+) => {
   const spinner = ora(`🦄 sending tokens to ${wallet} on ${network}`).start();
 
   const currentTimestamp = new Date().getTime();
@@ -19,8 +23,11 @@ const sendTokens = async (wallet: string, network: string) => {
       )
     );
   } else {
+    const endpoint = blockchain === "ethereum" ? "token" : "solana";
     await axios
-      .get(`${constants.apiUrl}/token?address=${wallet}&network=${network}`)
+      .get(
+        `${constants.apiUrl}/${endpoint}?address=${wallet}&network=${network}`
+      )
       .then((res) => {
         if (res.data.insufficientFunds === true) {
           spinner.fail(
