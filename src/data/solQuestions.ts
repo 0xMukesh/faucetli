@@ -1,20 +1,23 @@
-import networks from "./networks";
+import fs from "fs";
+
+import { solNetworks } from "./networks";
+import constants from "./constants";
 import getAddressFromConfigFile from "../utils/getAddressFromConfigFile";
 
-let questions: Array<Object> = [];
+let solQuestions: Array<Object> = [];
 
-if (getAddressFromConfigFile("ethereum")) {
-  questions = [
+if (getAddressFromConfigFile("solana")) {
+  solQuestions = [
     {
       type: "list",
       name: "network",
       message: "🦄 enter the network name:",
-      default: "mumbai",
-      choices: networks,
+      default: "devnet",
+      choices: solNetworks,
     },
   ];
 } else {
-  questions = [
+  solQuestions = [
     {
       type: "input",
       name: "wallet",
@@ -31,10 +34,10 @@ if (getAddressFromConfigFile("ethereum")) {
       type: "list",
       name: "network",
       message: "🦄 enter the network name:",
-      default: "mumbai",
-      choices: networks,
+      default: "devnet",
+      choices: solNetworks,
     },
   ];
 }
 
-export default questions;
+export default solQuestions;
