@@ -26,6 +26,7 @@ USAGE
 # Commands
 
 - [`faucetli request`](#faucetli-request)
+- [`faucetli solana`](#faucetli-solana)
 - [`faucetli networks`](#faucetli-networks)
 - [`faucetli funding`](#faucetli-funding)
 - [`faucetli help [COMMAND]`](#faucetli-help-command)
@@ -47,7 +48,22 @@ EXAMPLES
     🎉 sent the tokens to 0xd24CA0297558f0827e2C467603869D1AC9fF435d on rinkeby, check https://rinkeby.etherscan.io/tx/0x1d769e3f6a57a5176b9d1c6fbd8c3692fa0b3764c314ca6c263140794fde2cbd to verify if the transaction was successful
 ```
 
-_See code: [src/commands/request.ts](https://github.com/Kira272921/faucetli/blob/main/src/commands/request.ts)_
+## `faucetli solana`
+
+🦄 Get devnet Solana by using the solana command
+
+```
+USAGE
+  $ faucetli solana
+
+DESCRIPTION
+  🦄 Get devnet Solana by using the solana command
+
+EXAMPLES
+  $ faucetli solana
+
+    🎉 sent the tokens to 8Dyk53RrtmN3MshQxxWdfTRco9sQJzUHSqkUg8chbe88 on devnet, check https://explorer.solana.com/tx/2hQ5NZzJieBfGvNhTzUQnAQ9ntZ3ybDy9B2o1TUjpFfMqvzD4VDDYp1XiK9kb1KPyCKrWARmvCVC175DBnGiksh2?cluster=devnet to verify if the transaction was successful
+```
 
 ## `faucetli networks`
 
@@ -87,17 +103,13 @@ DESCRIPTION
   Display help for faucetli.
 ```
 
-_See code: [@oclif/plugin-help](https://github.com/oclif/plugin-help/blob/main/src/commands/help.ts)_
-
-<!-- commandsstop -->
-
 ## Authors
 
-### Kira
+### Mukesh
 
-- Website: https://kiradev.co
-- Twitter: [@kira_272921](https://twitter.com/kira_272921)
-- Discord: https://links.kiradev.co/discord
+- Website: https://mukeshdev.xyz
+- Twitter: [@mukesh_272921](https://twitter.com/mukesh_272921)
+- Discord: https://discord.gg/buidlershub
 
 ### Avneesh Agarwal
 
