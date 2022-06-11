@@ -1,11 +1,9 @@
-import fs from "fs";
-
 import networks from "./networks";
-import constants from "./constants";
+import getAddressFromConfigFile from "../utils/getAddressFromConfigFile";
 
 let questions: Array<Object> = [];
 
-if (fs.existsSync(constants.configFilePath)) {
+if (getAddressFromConfigFile("ethereum")) {
   questions = [
     {
       type: "list",
