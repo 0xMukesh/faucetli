@@ -9,7 +9,7 @@ import solQuestions from "../data/solQuestions";
 import createOrUpdateConfigFile from "../utils/createOrUpdateConfigFile";
 
 export default class Solana extends Command {
-  static description = "🦄 Get Solana by using the solana command";
+  static description = "🦄 Get devnet Solana by using the solana command";
 
   async run() {
     inquirer.prompt(solQuestions).then(async (answers) => {
