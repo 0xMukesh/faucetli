@@ -39,7 +39,7 @@ impl App {
             .subcommand(
                 ClapCommand::new("request")
                     .about("Request $$$")
-                    .arg(arg!(<CHAIN> "⛓️")),
+                    .arg(arg!([CHAIN] "⛓️")),
             )
             .subcommand(ClapCommand::new("networks").about("See all supported networks"))
             .subcommand(ClapCommand::new("funding").about("See details for funding faucetli"))
