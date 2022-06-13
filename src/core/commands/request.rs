@@ -1,3 +1,5 @@
+use std::process::exit;
+
 use crate::{cli::app::App, core::constants::Chains};
 use anyhow::Result;
 use clap::Values;
@@ -19,10 +21,20 @@ pub fn request(_app: App, args: Option<Values>) -> Result<()> {
             .prompt()
             .unwrap();
 
-        chain = Chains::from(&chain_display_name).unwrap()
+        chain = Chains::from_display_name(&chain_display_name).unwrap()
     } else {
         let chain_name = args.next().unwrap().to_string();
-        chain = Chains::from(&chain_name).unwrap()
+
+        let allowed_chains = Chains::iter()
+            .map(|c| c.arg_name().to_string())
+            .collect::<Vec<_>>();
+
+        if !allowed_chains.contains(&chain_name) {
+            println!("{}", "Invalid chain".red());
+            exit(1);
+        }
+
+        chain = Chains::from_arg(&chain_name).unwrap()
     }
 
     let wallet_address = Text::new("Enter ur wallet address ser:").prompt().unwrap();

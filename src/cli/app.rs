@@ -1,6 +1,6 @@
 use crate::core::commands::{funding::funding, networks::networks, request::request};
 use anyhow::Result;
-use clap::{arg, Command as ClapCommand, Values};
+use clap::{arg, Arg, Command as ClapCommand, Values};
 use std::{path::PathBuf, process::exit};
 
 pub enum Command {
@@ -39,7 +39,7 @@ impl App {
             .subcommand(
                 ClapCommand::new("request")
                     .about("Request $$$")
-                    .arg(arg!([CHAIN] "⛓️")),
+                    .arg(Arg::new("chain").takes_value(true).index(1)),
             )
             .subcommand(ClapCommand::new("networks").about("See all supported networks"))
             .subcommand(ClapCommand::new("funding").about("See details for funding faucetli"))
@@ -51,7 +51,7 @@ impl App {
         let matches = Box::leak(options.clone().get_matches().into());
 
         match matches.subcommand() {
-            Some(("request", sub)) => Command::Request(sub.values_of("CHAIN")),
+            Some(("request", sub)) => Command::Request(sub.values_of("chain")),
             Some(("networks", _)) => Command::Networks(None),
             Some(("funding", _)) => Command::Funding(None),
             _ => {
