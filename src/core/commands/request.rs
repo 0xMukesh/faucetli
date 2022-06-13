@@ -37,7 +37,7 @@ pub fn request(_app: App, args: Option<Values>) -> Result<()> {
         chain = Chains::from_arg(&chain_name).unwrap()
     }
 
-    let wallet_address = Text::new("Enter ur wallet address ser:")
+    let wallet_address = Text::new(chain.wallet_address_question())
         .with_validator(&|s| {
             if s.is_empty() {
                 Err("Wallet address cannot be empty".to_string())

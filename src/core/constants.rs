@@ -41,4 +41,11 @@ impl Chains {
             _ => None,
         }
     }
+
+    pub fn wallet_address_question(&self) -> &'static str {
+        match self {
+            Chains::Devnet => "Enter your solana wallet address:",
+            Chains::Mumbai | Chains::Rinkeby => "Enter your ethereum wallet address:",
+        }
+    }
 }
