@@ -14,7 +14,6 @@ pub fn get_config_path() -> PathBuf {
 
 pub fn create_config_file() -> File {
     let config_path = get_config_path();
-    // check if file exists
     if config_path.exists() {
         return File::open(config_path).unwrap();
     }
@@ -30,4 +29,15 @@ pub fn get_config() -> Value {
     let config_file = File::open(config_path).unwrap();
     let config: Value = serde_json::from_reader(config_file).unwrap();
     return config;
+}
+
+pub fn write_key(key: &str, value: &str) {
+    let config_path = get_config_path();
+    let config_file = File::open(&config_path).unwrap();
+    let mut config: Value = serde_json::from_reader(config_file).unwrap();
+    let mut config_file = File::create(config_path).unwrap();
+    config[key] = serde_json::Value::String(value.to_string());
+    config_file
+        .write(serde_json::to_string_pretty(&config).unwrap().as_bytes())
+        .unwrap();
 }

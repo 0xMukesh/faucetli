@@ -67,11 +67,11 @@ impl App {
         }
     }
 
-    pub fn run(self) -> Result<()> {
+    pub fn run(mut self) -> Result<()> {
         let command = self.get_command();
 
         match command {
-            Command::Request(args) => request(self, args),
+            Command::Request(args) => request(&mut self, args),
             Command::Networks(args) => networks(self, args),
             Command::Funding(args) => funding(self, args),
         }

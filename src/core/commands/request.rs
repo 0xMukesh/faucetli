@@ -1,15 +1,19 @@
 use std::process::exit;
 
-use crate::{cli::app::App, core::constants::Chains};
+use crate::{
+    cli::app::App,
+    core::{config::write_key, constants::Chains},
+};
 use anyhow::Result;
 use clap::Values;
 use colored::Colorize;
 use inquire::{Select, Text};
+use serde_json::Value;
 use strum::IntoEnumIterator;
 
-pub fn request(app: App, args: Option<Values>) -> Result<()> {
+pub fn request(app: &mut App, args: Option<Values>) -> Result<()> {
     let mut args = args.unwrap_or_default();
-    let config = app.config;
+    let config = &app.config;
 
     let chain: Chains;
 
@@ -38,27 +42,37 @@ pub fn request(app: App, args: Option<Values>) -> Result<()> {
         chain = Chains::from_arg(&chain_name).unwrap()
     }
 
-    match config.get("ethereum_pubkey") {
+    let wallet_address: &str;
+
+    match config.get(chain.address_config_name()) {
         Some(pubkey) => {
-            let pubkey = pubkey.as_str().unwrap();
-            println!("{}", pubkey);
+            wallet_address = pubkey.as_str().unwrap();
         }
         None => {
-            println!("{}", "No ethereum_pubkey found in config".red());
-            exit(1);
+            let address = Text::new(chain.wallet_address_question())
+                .with_validator(&|s| {
+                    if s.is_empty() {
+                        Err("Wallet address cannot be empty".to_string())
+                    } else {
+                        Ok(())
+                    }
+                })
+                .prompt()
+                .unwrap();
+
+            write_key(chain.address_config_name(), &address);
+
+            app.config[chain.address_config_name()] = Value::String(address);
+            wallet_address = app
+                .config
+                .get(chain.address_config_name())
+                .unwrap()
+                .as_str()
+                .unwrap();
         }
     }
 
-    let wallet_address = Text::new(chain.wallet_address_question())
-        .with_validator(&|s| {
-            if s.is_empty() {
-                Err("Wallet address cannot be empty".to_string())
-            } else {
-                Ok(())
-            }
-        })
-        .prompt()
-        .unwrap();
+    println!("{}", wallet_address);
 
     println!(
         "Sending tokens to {} on {} (ps: still not functioniong, just making UI lol)",

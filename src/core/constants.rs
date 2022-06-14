@@ -48,4 +48,11 @@ impl Chains {
             Chains::Mumbai | Chains::Rinkeby => "Enter your ethereum wallet address:",
         }
     }
+
+    pub fn address_config_name(&self) -> &'static str {
+        match self {
+            Chains::Devnet => "solana_pubkey",
+            Chains::Mumbai | Chains::Rinkeby => "ethereum_pubkey",
+        }
+    }
 }
