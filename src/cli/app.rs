@@ -1,6 +1,10 @@
-use crate::core::commands::{funding::funding, networks::networks, request::request};
+use crate::core::{
+    commands::{funding::funding, networks::networks, request::request},
+    config::{create_config_file, get_config},
+};
 use anyhow::Result;
-use clap::{arg, Arg, Command as ClapCommand, Values};
+use clap::{Arg, Command as ClapCommand, Values};
+use serde_json::Value;
 use std::{path::PathBuf, process::exit};
 
 pub enum Command {
@@ -10,7 +14,7 @@ pub enum Command {
 }
 
 pub struct App {
-    pub db_path: PathBuf,
+    pub config: Value,
 }
 
 pub fn get_config_path() -> PathBuf {
@@ -28,13 +32,15 @@ impl Default for App {
 impl App {
     #[must_use]
     pub fn new() -> Self {
-        Self {
-            db_path: PathBuf::from("secli.db"),
-        }
+        create_config_file();
+
+        let config = get_config();
+
+        Self { config }
     }
 
     fn build(&self) -> ClapCommand {
-        ClapCommand::new("secli")
+        ClapCommand::new("faucetli")
             .about("A CLI in Rust to store secrets")
             .subcommand(
                 ClapCommand::new("request")

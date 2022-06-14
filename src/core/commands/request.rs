@@ -7,8 +7,9 @@ use colored::Colorize;
 use inquire::{Select, Text};
 use strum::IntoEnumIterator;
 
-pub fn request(_app: App, args: Option<Values>) -> Result<()> {
+pub fn request(app: App, args: Option<Values>) -> Result<()> {
     let mut args = args.unwrap_or_default();
+    let config = app.config;
 
     let chain: Chains;
 
@@ -35,6 +36,17 @@ pub fn request(_app: App, args: Option<Values>) -> Result<()> {
         }
 
         chain = Chains::from_arg(&chain_name).unwrap()
+    }
+
+    match config.get("ethereum_pubkey") {
+        Some(pubkey) => {
+            let pubkey = pubkey.as_str().unwrap();
+            println!("{}", pubkey);
+        }
+        None => {
+            println!("{}", "No ethereum_pubkey found in config".red());
+            exit(1);
+        }
     }
 
     let wallet_address = Text::new(chain.wallet_address_question())
