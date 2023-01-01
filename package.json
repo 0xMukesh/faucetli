@@ -38,7 +38,7 @@
     "@types/node": "16.11.56",
     "@types/shelljs": "0.8.11",
     "chai": "4.3.6",
-    "eslint": "8.23.0",
+    "eslint": "8.31.0",
     "eslint-config-oclif": "4.0.0",
     "eslint-config-oclif-typescript": "1.0.2",
     "globby": "11.1.0",
