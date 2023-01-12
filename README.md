@@ -107,9 +107,7 @@ DESCRIPTION
 
 ### Mukesh
 
-- Website: https://mukeshdev.xyz
-- Twitter: [@mukesh_272921](https://twitter.com/mukesh_272921)
-- Discord: https://discord.gg/buidlershub
+- Twitter: [@0xMukesh](https://twitter.com/0xMukesh)
 
 ### Avneesh Agarwal
 
