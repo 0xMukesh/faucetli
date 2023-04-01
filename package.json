@@ -30,7 +30,7 @@
     "shelljs": "^0.8.5"
   },
   "devDependencies": {
-    "@oclif/test": "2.1.0",
+    "@oclif/test": "2.3.13",
     "@types/chai": "4.3.1",
     "@types/inquirer": "8.2.1",
     "@types/listr": "0.14.4",
